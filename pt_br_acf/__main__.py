@@ -1,12 +1,7 @@
 import json
 
-
 from pt_br_acf import BASE_URL
 from pt_br_acf.functions import get_books_slug, get_soup, zip_bible
-
-# rename_files()
-# print('oi!')
-# sys.exit()
 
 books = get_books_slug()
 if books is None:
@@ -34,6 +29,9 @@ for book_index in range(0, len(books)):
             break
 
         verses = soup.find_all(attrs={'class': 'verse-text'})
+
+        if len(verses) == 0:
+            break
 
         for verse in verses:
 
