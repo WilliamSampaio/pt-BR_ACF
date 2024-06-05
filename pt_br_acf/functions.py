@@ -82,7 +82,7 @@ def write_index():
             'slug': '',
             'lang': '',
             'url_from': BASE_URL,
-            'scraping_date': datetime.today().strftime('%Y-%m-%d'),
+            'scraping_date': None,
         }
     filenames = os.listdir('data')
     filenames.sort()
@@ -96,6 +96,7 @@ def write_index():
             data = json.load(f)
             index['books'][filename.split('_')[0]] = data['book']
     with open(os.path.join('data', '00.json'), 'w') as f:
+        index['scraping_date'] = datetime.today().strftime('%Y-%m-%d')
         f.write(json.dumps(index, indent=4))
 
 
