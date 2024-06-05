@@ -1,7 +1,12 @@
 import json
 
 from pt_br_acf import BASE_URL
-from pt_br_acf.functions import get_books_slug, get_soup, zip_bible
+from pt_br_acf.functions import (
+    get_books_slug,
+    get_soup,
+    write_index,
+    zip_bible,
+)
 
 books = get_books_slug()
 if books is None:
@@ -19,7 +24,7 @@ for book_index in range(0, len(books)):
 
         soup = get_soup(
             BASE_URL
-            + 'acfonline-versos?livro={}&capitulo={}'.format(
+            + '-versos?livro={}&capitulo={}'.format(
                 books[book_index][1],
                 str(chapter),
             )
@@ -44,4 +49,5 @@ for book_index in range(0, len(books)):
 
         print(books[book_index][0], chapter)
 
+write_index()
 zip_bible('pt-BR_ACF')
